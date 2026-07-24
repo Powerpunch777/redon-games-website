@@ -30,7 +30,7 @@ const pages = await Promise.all(
   ),
 );
 const allPages = [index, ...pages];
-const installerUrl = "https://github.com/Powerpunch777/SPS-Desktop-Releases/releases/download/v0.4.29/SPS-Desktop-Setup-0.4.29.exe";
+const installerUrl = "https://github.com/Powerpunch777/SPS-Desktop-Releases/releases/download/v0.4.30/SPS-Desktop-Setup-0.4.30.exe";
 
 const checks = [
   ["Redon title", index.includes("<title>Redon Games</title>")],
@@ -44,7 +44,7 @@ const checks = [
   ["all pages include shared interaction script", pages.every((page) => page.includes("../scripts/site.js"))],
   ["no browser link to SPS server", allPages.every((page) => !page.includes("app.redongames.com"))],
   ["download page links to SPS Desktop installer", pages[3].includes(installerUrl)],
-  ["current SPS Desktop version", pages[3].includes("0.4.29")],
+  ["current SPS Desktop version", pages[3].includes("0.4.30")],
   ["private beta status", index.includes("Private feedback build")],
   ["no legacy Paperclip product name", !index.toLowerCase().includes("paperclip")],
   ["no public product source link", !index.includes("github.com/Powerpunch777/SPS")],
