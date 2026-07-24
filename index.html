@@ -1,185 +1,149 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="SPS is a local-first AI workplane from Redon Games for small teams operating real AI tools across their own computers."
-    />
-    <meta name="theme-color" content="#0a3679" />
-    <meta property="og:title" content="SPS Desktop | Redon Games" />
-    <meta
-      property="og:description"
-      content="A local-first AI workplane where Leads delegate real Tasks to approved computers."
-    />
-    <meta property="og:image" content="https://redongames.com/assets/sps-logo.png" />
+    <meta name="description" content="Redon Games is an independent game studio. SPS is our local-first AI development workspace for small teams." />
+    <meta name="theme-color" content="#0d0f12" />
+    <meta property="og:title" content="Redon Games" />
+    <meta property="og:description" content="An independent studio making worlds with a point of view." />
+    <meta property="og:image" content="https://redongames.com/assets/redon-hero-keyart.png" />
     <meta property="og:url" content="https://redongames.com" />
     <meta property="og:type" content="website" />
     <link rel="canonical" href="https://redongames.com" />
-    <link rel="icon" type="image/png" href="./assets/sps-logo.png" />
     <link rel="stylesheet" href="./styles.css" />
-    <title>SPS Desktop | Redon Games</title>
+    <title>Redon Games</title>
   </head>
   <body>
-    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+    <a class="skip-link" href="#main" data-en="Skip to content" data-ko="본문으로 건너뛰기">Skip to content</a>
     <header class="site-header">
-      <a class="brand" href="./" aria-label="SPS home">
-        <img src="./assets/sps-logo.png" alt="SPS 로고" width="40" height="40" />
-        <span>SPS</span>
+      <a class="brand" href="#top" aria-label="Redon Games home">
+        <span class="brand-mark">R/</span><span>REDON GAMES</span>
       </a>
-      <nav aria-label="주요 메뉴">
-        <a href="#product">제품</a>
-        <a href="#workflow">작동 방식</a>
-        <a href="#availability">베타</a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="./studio/" data-en="Studio" data-ko="스튜디오">Studio</a>
+        <a href="./games/" data-en="Games" data-ko="게임">Games</a>
+        <a href="./sps/" data-en="Technology" data-ko="기술">Technology</a>
+        <a href="./download/" data-en="Download" data-ko="다운로드">Download</a>
+        <a href="./contact/" data-en="Contact" data-ko="문의">Contact</a>
       </nav>
-      <a class="header-cta" href="https://app.redongames.com">초대 받은 팀원 로그인</a>
+      <div class="header-actions">
+        <div class="language-switch" aria-label="Language selection">
+          <button type="button" class="language-button is-active" data-language="en" aria-pressed="true">EN</button>
+          <button type="button" class="language-button" data-language="ko" aria-pressed="false">KO</button>
+        </div>
+        <a class="header-cta" href="https://app.redongames.com" data-en="Request beta access" data-ko="베타 접근 요청">Request beta access</a>
+        <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </header>
 
+    <nav id="mobile-navigation" class="mobile-navigation" aria-label="Mobile navigation" hidden>
+      <a href="./studio/" data-en="Studio" data-ko="스튜디오">Studio</a>
+      <a href="./games/" data-en="Games" data-ko="게임">Games</a>
+      <a href="./sps/" data-en="Technology" data-ko="기술">Technology</a>
+      <a href="./download/" data-en="Download" data-ko="다운로드">Download</a>
+      <a href="./contact/" data-en="Contact" data-ko="문의">Contact</a>
+      <a href="https://app.redongames.com" data-en="Request beta access" data-ko="베타 접근 요청">Request beta access</a>
+    </nav>
+
     <main id="main">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">REDON GAMES · PRIVATE DESKTOP BETA</p>
-          <h1 id="hero-title">SPS</h1>
-          <p class="hero-title">작은 팀을 위한, 실제 컴퓨터 기반 AI 작업공간.</p>
-          <p class="hero-lede">
-            역할별 AI는 Room에서 맥락을 유지하고, Lead AI는 목표별 Task를 만들어
-            승인된 Worker에게 일을 맡깁니다. 실행은 각자의 컴퓨터에 있는 CLI와 로컬
-            도구로 이루어집니다.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="https://app.redongames.com">SPS 열기</a>
-            <a class="button button-secondary" href="#workflow">작동 방식 보기</a>
-          </div>
-          <p class="availability-note">현재 Windows Desktop 비공개 베타를 운영 중입니다.</p>
+      <section id="top" class="hero" aria-labelledby="hero-title">
+        <img class="hero-art" src="./assets/redon-hero-keyart.png" alt="An original game-world scene of an explorer approaching an industrial monolith" />
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow" data-en="Independent studio · private beta" data-ko="인디 스튜디오 · 비공개 베타">Independent studio · private beta</p>
+          <h1 id="hero-title">REDON<br />GAMES</h1>
+          <p class="hero-summary" data-en="Building worlds with a point of view. A working site for the people helping us make it sharper." data-ko="분명한 관점을 가진 세계를 만듭니다. 더 좋은 작업을 함께 만들어 갈 사람들을 위한 공간입니다.">Building worlds with a point of view. A working site for the people helping us make it sharper.</p>
+          <a class="quiet-link" href="./studio/" data-en="Explore the studio" data-ko="스튜디오 살펴보기">Explore the studio</a>
         </div>
+        <aside class="hero-note" aria-label="Private beta availability">
+          <p class="eyebrow" data-en="Now inviting" data-ko="현재 초대 중">Now inviting</p>
+          <p data-en="Early collaborators and private feedback testers." data-ko="초기 협력자와 소수의 피드백 테스터를 초대하고 있습니다.">Early collaborators and private feedback testers.</p>
+          <small data-en="Seoul / Independent / 2026" data-ko="서울 / 인디펜던트 / 2026">Seoul / Independent / 2026</small>
+        </aside>
+      </section>
 
-        <div class="product-preview" aria-label="SPS 작업 흐름 미리보기">
-          <div class="preview-topbar">
-            <span class="preview-mark">SPS</span>
-            <span>Team Workplane</span>
-            <span class="preview-status">Owner Host online</span>
+      <section id="studio" class="section studio-section" aria-labelledby="studio-title">
+        <div class="section-label">01 / <span data-en="Studio" data-ko="스튜디오">Studio</span></div>
+        <div class="studio-layout">
+          <div>
+            <h2 id="studio-title"><span data-en="Small by design." data-ko="작게 시작합니다.">Small by design.</span> <em data-en="Serious by default." data-ko="진지하게 만듭니다.">Serious by default.</em></h2>
           </div>
-          <div class="preview-body">
-            <div class="preview-sidebar">
-              <span class="preview-section">PROJECT</span>
-              <strong>Arcade Project</strong>
-              <span class="preview-section">ROOMS</span>
-              <span>Designer</span>
-              <span>CTO</span>
-              <span>Image Worker</span>
-            </div>
-            <div class="preview-canvas">
-              <div class="preview-logo-wrap">
-                <img src="./assets/sps-logo.png" alt="" width="220" height="220" />
-              </div>
-              <p>Lead creates a Task</p>
-              <div class="task-flow">
-                <span>Design</span><b>→</b><span>Task</span><b>→</b><span>Node</span>
-              </div>
-              <p class="preview-caption">결과와 막힌 이유는 상위 Room으로 돌아옵니다.</p>
-            </div>
+          <div class="studio-copy">
+            <p data-en="Redon is an independent studio working at the intersection of authored worlds, practical tools, and close collaboration." data-ko="Redon은 세계를 설계하는 일, 실용적인 도구, 가까운 협업이 만나는 지점에서 작업하는 독립 스튜디오입니다.">Redon is an independent studio working at the intersection of authored worlds, practical tools, and close collaboration.</p>
+            <ol>
+              <li data-en="A smaller room keeps intent close to implementation." data-ko="작은 팀은 의도와 구현의 거리를 가깝게 만듭니다.">A smaller room keeps intent close to implementation.</li>
+              <li data-en="We invite perspective before polish makes change expensive." data-ko="수정이 비싸지기 전에 관점을 초대합니다.">We invite perspective before polish makes change expensive.</li>
+              <li data-en="Technology is part of the craft, not an afterthought." data-ko="기술은 나중에 덧붙이는 일이 아니라 제작의 일부입니다.">Technology is part of the craft, not an afterthought.</li>
+            </ol>
           </div>
         </div>
       </section>
 
-      <section id="product" class="section" aria-labelledby="product-title">
+      <section id="games" class="section games-section" aria-labelledby="games-title">
+        <div class="section-label">02 / <span data-en="Games" data-ko="게임">Games</span></div>
         <div class="section-heading">
-          <p class="eyebrow">A WORKPLANE, NOT A CHATBOT</p>
-          <h2 id="product-title">대화, 작업, 실행 환경을 같은 흐름으로 연결합니다.</h2>
-          <p>
-            SPS는 게임, 웹, 앱처럼 서로 다른 제작 방식에 맞게 역할과 플러그인을
-            조합할 수 있는 로컬 우선 AI 개발 환경입니다.
-          </p>
+          <h2 id="games-title"><span data-en="One world" data-ko="하나의 세계가">One world</span> <em data-en="taking shape." data-ko="형태를 갖추는 중입니다.">taking shape.</em></h2>
+          <p data-en="We are sharing process early, not a finished catalog. Our first original project is in active development." data-ko="완성된 카탈로그가 아니라 제작 과정을 먼저 공유합니다. 첫 번째 오리지널 프로젝트를 개발 중입니다.">We are sharing process early, not a finished catalog. Our first original project is in active development.</p>
         </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <p class="feature-number">01</p>
-            <h3>Room은 맥락을 보존합니다</h3>
-            <p>프로젝트 안에서 Agent별 장기 대화를 유지하고, 역할별 운영 규칙을 적용합니다.</p>
-          </article>
-          <article class="feature-card">
-            <p class="feature-number">02</p>
-            <h3>Task는 목표를 실행합니다</h3>
-            <p>Lead가 작업의 결과, 담당자, 완료 조건을 정하면 Worker가 같은 Task 안에서 수행합니다.</p>
-          </article>
-          <article class="feature-card">
-            <p class="feature-number">03</p>
-            <h3>Node는 실제 도구를 지킵니다</h3>
-            <p>CLI 로그인, 로컬 모델, 작업 폴더는 각 컴퓨터에 남고, 허용된 조합만 실행합니다.</p>
-          </article>
-        </div>
+        <article class="project-card">
+          <div class="project-meta"><span data-en="Project file / RG-01" data-ko="프로젝트 파일 / RG-01">Project file / RG-01</span><span data-en="In development" data-ko="개발 중">In development</span></div>
+          <div>
+            <p class="project-tag" data-en="World exploration · systems design" data-ko="월드 탐험 · 시스템 디자인">World exploration · systems design</p>
+            <h3 data-en="Untitled world project" data-ko="제목 미정 월드 프로젝트">Untitled world project</h3>
+          </div>
+          <p data-en="We will share the work when there is something honest to show." data-ko="정직하게 보여줄 수 있는 것이 생겼을 때 작업을 공개하겠습니다.">We will share the work when there is something honest to show.</p>
+        </article>
       </section>
 
-      <section id="workflow" class="workflow-band" aria-labelledby="workflow-title">
-        <div class="workflow-intro">
-          <p class="eyebrow">THE SPS LOOP</p>
-          <h2 id="workflow-title">사람이 방향을 정하고, AI 팀이 일을 이어갑니다.</h2>
+      <section id="sps" class="section technology-section" aria-labelledby="sps-title">
+        <div class="section-label">03 / <span data-en="Technology" data-ko="기술">Technology</span></div>
+        <div class="section-heading">
+          <h2 id="sps-title"><span data-en="Tools built for" data-ko="작업하는 공간을 위해">Tools built for</span> <em data-en="the room we work in." data-ko="만든 도구입니다.">the room we work in.</em></h2>
+          <p data-en="SPS is Redon's separate technology product for teams that want local-first AI development without losing control of their process." data-ko="SPS는 작업 방식을 잃지 않으면서 로컬 우선 AI 개발 환경을 원하는 팀을 위한 Redon의 별도 기술 제품입니다.">SPS is Redon's separate technology product for teams that want local-first AI development without losing control of their process.</p>
         </div>
-        <ol class="workflow-list">
-          <li>
-            <span>1</span>
-            <h3>Room에서 논의</h3>
-            <p>사용자와 Lead AI가 설계, 구현 범위, 우선순위를 함께 정합니다.</p>
-          </li>
-          <li>
-            <span>2</span>
-            <h3>Lead가 Task 생성</h3>
-            <p>Lead만 필요한 Worker에게 목표와 완료 기준을 담아 일을 할당합니다.</p>
-          </li>
-          <li>
-            <span>3</span>
-            <h3>승인된 Node에서 실행</h3>
-            <p>Worker는 자신의 컴퓨터에 연결된 CLI, 로컬 AI, 전문 도구를 사용합니다.</p>
-          </li>
-          <li>
-            <span>4</span>
-            <h3>결과를 Room으로 보고</h3>
-            <p>완료와 차단 사유가 상위 Room에 남아 다음 결정을 바로 이어갈 수 있습니다.</p>
-          </li>
-        </ol>
+        <article class="sps-panel">
+          <div class="sps-branding">
+            <p>SPS / Studio Process System</p>
+            <strong>SPS</strong>
+            <span data-en="Local-first AI development" data-ko="로컬 우선 AI 개발 환경">Local-first AI development</span>
+          </div>
+          <div class="sps-copy">
+            <p data-en="A serious workspace for teams that need AI close to the codebase: inspectable, local-first, and built around the way a small team actually ships." data-ko="코드베이스 가까이에서 AI를 사용해야 하는 팀을 위한 작업 공간입니다. 확인 가능하고, 로컬 우선이며, 작은 팀이 실제로 출시하는 방식을 중심에 둡니다.">A serious workspace for teams that need AI close to the codebase: inspectable, local-first, and built around the way a small team actually ships.</p>
+            <ul>
+              <li><strong data-en="Local context" data-ko="로컬 컨텍스트">Local context</strong><span data-en="Keep projects, decisions, and working context close to source." data-ko="프로젝트, 결정, 작업 맥락을 소스 가까이에 둡니다.">Keep projects, decisions, and working context close to source.</span></li>
+              <li><strong data-en="Legible systems" data-ko="이해 가능한 시스템">Legible systems</strong><span data-en="Use AI where it clarifies work, not where it obscures it." data-ko="작업을 흐리게 하지 않고 분명하게 만드는 곳에 AI를 사용합니다.">Use AI where it clarifies work, not where it obscures it.</span></li>
+              <li><strong data-en="Team pace" data-ko="팀의 속도">Team pace</strong><span data-en="Made for small, high-context teams moving together." data-ko="많은 맥락을 공유하며 함께 움직이는 작은 팀을 위해 만들었습니다.">Made for small, high-context teams moving together.</span></li>
+            </ul>
+            <a class="button button-blue" href="https://app.redongames.com" data-en="Request SPS beta access" data-ko="SPS 베타 접근 요청">Request SPS beta access</a>
+          </div>
+        </article>
+        <p class="technology-note" data-en="SPS is a product in its own right. It supports the studio's practice; it is not the studio's entire story." data-ko="SPS는 독립적인 제품입니다. 스튜디오의 작업 방식을 돕지만, 스튜디오 전체를 대신하지는 않습니다.">SPS is a product in its own right. It supports the studio's practice; it is not the studio's entire story.</p>
       </section>
 
-      <section class="section authority-section" aria-labelledby="authority-title">
-        <div class="authority-copy">
-          <p class="eyebrow">LOCAL-FIRST AUTHORITY</p>
-          <h2 id="authority-title">실행 권한은 명확하게, 민감한 환경은 각 PC에.</h2>
-          <p>
-            SPS Hub는 회사, 초대, 프로젝트, Agent와 Node의 접근 권한을 관리합니다.
-            반면 각 컴퓨터의 CLI 인증 정보와 로컬 모델, 파일은 그 컴퓨터 밖으로 옮기지 않습니다.
-          </p>
-        </div>
-        <dl class="authority-list">
-          <div><dt>Google 로그인</dt><dd>사람의 신원 확인</dd></div>
-          <div><dt>초대 코드</dt><dd>회사와 프로젝트 참여</dd></div>
-          <div><dt>Node 승인</dt><dd>새 컴퓨터의 실행 대기</dd></div>
-          <div><dt>Agent 권한</dt><dd>역할별 최소 실행 권한</dd></div>
-        </dl>
-      </section>
-
-      <section id="availability" class="section beta-callout" aria-labelledby="beta-title">
-        <div>
-          <p class="eyebrow">SPS DESKTOP BETA</p>
-          <h2 id="beta-title">초대된 팀과 함께 SPS를 다듬고 있습니다.</h2>
-          <p>
-            현재는 Owner가 팀원을 초대하고 Windows Desktop을 연결하는 비공개 베타 단계입니다.
-            초대 받은 팀원은 로그인 후 자신의 컴퓨터를 Node로 연결할 수 있습니다.
-          </p>
-        </div>
-        <div class="beta-actions">
-          <a class="button button-primary" href="https://app.redongames.com">초대 링크 열기</a>
-          <a class="button button-secondary" href="mailto:contact@redongames.com">피드백 보내기</a>
+      <section id="contact" class="contact-section" aria-labelledby="contact-title">
+        <div class="contact-layout">
+          <div>
+            <p class="eyebrow" data-en="A narrow door, intentionally" data-ko="의도적으로 좁게 여는 문">A narrow door, intentionally</p>
+            <h2 id="contact-title"><span data-en="Close feedback" data-ko="가까운 피드백이">Close feedback</span> <em data-en="makes better work." data-ko="더 나은 작업을 만듭니다.">makes better work.</em></h2>
+          </div>
+          <div class="contact-copy">
+            <p data-en="Interested in the studio, the first game, or SPS? We are keeping this beta small and reviewing requests through approved Google accounts." data-ko="스튜디오, 첫 번째 게임, SPS에 관심이 있나요? 이 베타는 소수로 운영하며 승인된 Google 계정으로 요청을 검토합니다.">Interested in the studio, the first game, or SPS? We are keeping this beta small and reviewing requests through approved Google accounts.</p>
+            <a class="email-link" href="mailto:redongames1234@gmail.com">redongames1234@gmail.com</a>
+            <a class="button button-light" href="https://app.redongames.com" data-en="Open SPS" data-ko="SPS 열기">Open SPS</a>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="footer-brand">
-        <img src="./assets/sps-logo.png" alt="" width="30" height="30" />
-        <span>SPS Desktop</span>
-      </div>
-      <p>SonParkServer by Redon Games.</p>
-      <a href="mailto:contact@redongames.com">contact@redongames.com</a>
+      <a class="brand" href="#top"><span class="brand-mark">R/</span><span>REDON GAMES</span></a>
+      <p data-en="Private feedback build · Not a public launch" data-ko="비공개 피드백 빌드 · 정식 공개 전">Private feedback build · Not a public launch</p>
+      <span>© 2026 Redon Games</span>
     </footer>
+
+    <script src="./scripts/site.js"></script>
   </body>
 </html>

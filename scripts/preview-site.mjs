@@ -20,7 +20,7 @@ const server = createServer(async (request, response) => {
   const requestUrl = new URL(request.url ?? "/", "http://127.0.0.1");
   if (requestUrl.pathname === "/_shutdown") {
     response.writeHead(200, { "content-type": "text/plain; charset=utf-8" });
-    response.end("SPS website preview stopped.");
+    response.end("Redon Games website preview stopped.");
     server.close();
     return;
   }
@@ -33,7 +33,8 @@ const server = createServer(async (request, response) => {
     return;
   }
 
-  const relativePath = decodedPathname.replace(/^\/+/, "") || "index.html";
+  const normalizedPath = decodedPathname.endsWith("/") ? `${decodedPathname}index.html` : decodedPathname;
+  const relativePath = normalizedPath.replace(/^\/+/, "") || "index.html";
   const targetPath = resolve(siteDirectory, relativePath);
   if (targetPath !== siteDirectory && !targetPath.startsWith(`${siteDirectory}${sep}`)) {
     response.writeHead(403).end();
@@ -58,5 +59,5 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(port, "127.0.0.1", () => {
-  console.log(`SPS website preview: http://127.0.0.1:${port}`);
+  console.log(`Redon Games website preview: http://127.0.0.1:${port}`);
 });

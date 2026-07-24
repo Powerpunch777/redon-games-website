@@ -7,9 +7,15 @@ const siteDirectory = resolve(scriptDirectory, "..");
 const requiredFiles = [
   "index.html",
   "styles.css",
+  "scripts/site.js",
+  "studio/index.html",
+  "games/index.html",
+  "sps/index.html",
+  "download/index.html",
+  "contact/index.html",
   "robots.txt",
   "sitemap.xml",
-  "assets/sps-logo.png",
+  "assets/redon-hero-keyart.png",
 ];
 
 for (const file of requiredFiles) {
@@ -18,23 +24,32 @@ for (const file of requiredFiles) {
 
 const index = await readFile(resolve(siteDirectory, "index.html"), "utf8");
 const stylesheet = await readFile(resolve(siteDirectory, "styles.css"), "utf8");
+const pages = await Promise.all(
+  ["studio", "games", "sps", "download", "contact"].map((page) =>
+    readFile(resolve(siteDirectory, page, "index.html"), "utf8"),
+  ),
+);
 
 const checks = [
-  ["SPS title", index.includes("<title>SPS Desktop | Redon Games</title>")],
+  ["Redon title", index.includes("<title>Redon Games</title>")],
   ["canonical public domain", index.includes('href="https://redongames.com"')],
-  ["Hub endpoint", index.includes("https://app.redongames.com")],
-  ["brand image", index.includes("./assets/sps-logo.png")],
+  ["SPS Hub endpoint", index.includes("https://app.redongames.com")],
+  ["generated hero image", index.includes("./assets/redon-hero-keyart.png")],
   ["responsive viewport", index.includes('name="viewport"')],
   ["visible focus style", stylesheet.includes(":focus-visible")],
-  ["mobile layout", stylesheet.includes("@media (max-width: 620px)")],
-  ["no legacy product name", !index.toLowerCase().includes("paperclip")],
-  ["no product source link", !index.includes("github.com/Powerpunch777/SPS")],
-  ["private beta status", index.includes("PRIVATE DESKTOP BETA")],
+  ["mobile navigation", index.includes('id="mobile-navigation"')],
+  ["language toggle", index.includes('data-language="ko"')],
+  ["independent page navigation", index.includes('href="./studio/"') && index.includes('href="./download/"')],
+  ["all pages include shared interaction script", pages.every((page) => page.includes("../scripts/site.js"))],
+  ["download page routes to SPS", pages[3].includes("https://app.redongames.com")],
+  ["private beta status", index.includes("Private feedback build")],
+  ["no legacy Paperclip product name", !index.toLowerCase().includes("paperclip")],
+  ["no public product source link", !index.includes("github.com/Powerpunch777/SPS")],
 ];
 
 const failed = checks.filter(([, passed]) => !passed).map(([name]) => name);
 if (failed.length > 0) {
-  throw new Error(`SPS website check failed: ${failed.join(", ")}`);
+  throw new Error(`Redon Games website check failed: ${failed.join(", ")}`);
 }
 
-console.log(`SPS website check passed (${checks.length} checks).`);
+console.log(`Redon Games website check passed (${checks.length} checks).`);
