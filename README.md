@@ -12,7 +12,7 @@ belong here.
 - `/studio/` - Redon's working principles
 - `/games/` - the first in-development game project
 - `/sps/` - SPS product overview
-- `/download/` - private beta access and desktop sign-in path
+- `/download/` - the current SPS Desktop Windows installer and post-install sign-in guidance
 - `/contact/` - feedback and beta access contact
 
 The website is English-first. The EN/KO switch persists the selected language
@@ -33,4 +33,5 @@ GitHub Pages deploys from the `main` branch through
 `.github/workflows/deploy-pages.yml`. Configure `redongames.com` as the
 repository's Custom domain in GitHub Pages settings, then use the GitHub Pages
 apex DNS records in Cloudflare. The static site remains deliberately separate
-from `app.redongames.com`, the authenticated SPS Hub.
+from SPS workspaces. It links to a versioned SPS Desktop release asset;
+authentication and workspace access begin only inside the installed app.
