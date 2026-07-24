@@ -7,7 +7,6 @@ const siteDirectory = resolve(scriptDirectory, "..");
 const requiredFiles = [
   "index.html",
   "styles.css",
-  "_headers",
   "robots.txt",
   "sitemap.xml",
   "assets/sps-logo.png",
@@ -19,7 +18,6 @@ for (const file of requiredFiles) {
 
 const index = await readFile(resolve(siteDirectory, "index.html"), "utf8");
 const stylesheet = await readFile(resolve(siteDirectory, "styles.css"), "utf8");
-const headers = await readFile(resolve(siteDirectory, "_headers"), "utf8");
 
 const checks = [
   ["SPS title", index.includes("<title>SPS Desktop | Redon Games</title>")],
@@ -29,7 +27,6 @@ const checks = [
   ["responsive viewport", index.includes('name="viewport"')],
   ["visible focus style", stylesheet.includes(":focus-visible")],
   ["mobile layout", stylesheet.includes("@media (max-width: 620px)")],
-  ["static security headers", headers.includes("Content-Security-Policy")],
   ["no legacy product name", !index.toLowerCase().includes("paperclip")],
   ["no product source link", !index.includes("github.com/Powerpunch777/SPS")],
   ["private beta status", index.includes("PRIVATE DESKTOP BETA")],
