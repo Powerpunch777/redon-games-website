@@ -13,6 +13,9 @@ const requiredFiles = [
   "sps/index.html",
   "download/index.html",
   "contact/index.html",
+  "privacy/index.html",
+  "terms/index.html",
+  "security/index.html",
   "robots.txt",
   "sitemap.xml",
   "assets/redon-hero-keyart.png",
@@ -25,7 +28,7 @@ for (const file of requiredFiles) {
 const index = await readFile(resolve(siteDirectory, "index.html"), "utf8");
 const stylesheet = await readFile(resolve(siteDirectory, "styles.css"), "utf8");
 const pages = await Promise.all(
-  ["studio", "games", "sps", "download", "contact"].map((page) =>
+  ["studio", "games", "sps", "download", "contact", "privacy", "terms", "security"].map((page) =>
     readFile(resolve(siteDirectory, page, "index.html"), "utf8"),
   ),
 );
@@ -46,6 +49,9 @@ const checks = [
   ["download page links to SPS Desktop installer", pages[3].includes(installerUrl)],
   ["current SPS Desktop version", pages[3].includes("0.4.30")],
   ["private beta status", index.includes("Private feedback build")],
+  ["privacy notice", pages[5].includes("What SPS collects")],
+  ["beta terms", pages[6].includes("Private beta access")],
+  ["security contact", pages[7].includes("Report a vulnerability")],
   ["no legacy Paperclip product name", !index.toLowerCase().includes("paperclip")],
   ["no public product source link", !index.includes("github.com/Powerpunch777/SPS")],
 ];

@@ -1,3 +1,26 @@
+const footerPrefix = document.querySelector('link[href="./styles.css"]') ? "." : "..";
+
+document.querySelectorAll(".site-footer").forEach((footer) => {
+  if (footer.querySelector(".footer-links")) return;
+
+  const links = document.createElement("nav");
+  links.className = "footer-links";
+  links.setAttribute("aria-label", "Policy links");
+  [
+    ["Privacy", "개인정보", "privacy"],
+    ["Terms", "이용 조건", "terms"],
+    ["Security", "보안", "security"],
+  ].forEach(([english, korean, path]) => {
+    const link = document.createElement("a");
+    link.href = `${footerPrefix}/${path}/`;
+    link.dataset.en = english;
+    link.dataset.ko = korean;
+    link.textContent = english;
+    links.append(link);
+  });
+  footer.insertBefore(links, footer.lastElementChild);
+});
+
 const languageButtons = document.querySelectorAll(".language-button");
 const localizedElements = document.querySelectorAll("[data-en][data-ko]");
 const menuButton = document.querySelector(".menu-button");

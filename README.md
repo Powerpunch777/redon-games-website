@@ -14,6 +14,7 @@ belong here.
 - `/sps/` - SPS product overview
 - `/download/` - the current SPS Desktop Windows installer and post-install sign-in guidance
 - `/contact/` - feedback and beta access contact
+- `/privacy/`, `/terms/`, `/security/` - private-beta privacy, use, and security reporting notices
 
 The website is English-first. The EN/KO switch persists the selected language
 while a visitor moves between pages.
