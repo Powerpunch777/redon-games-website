@@ -33,7 +33,7 @@ const pages = await Promise.all(
   ),
 );
 const allPages = [index, ...pages];
-const installerUrl = "https://github.com/Powerpunch777/SPS-Desktop-Releases/releases/download/v0.4.30/SPS-Desktop-Setup-0.4.30.exe";
+const installerUrl = "https://github.com/Powerpunch777/SPS-Desktop-Releases/releases/download/v0.4.49/SPS-Desktop-Setup-0.4.49.exe";
 
 const checks = [
   ["Redon title", index.includes("<title>Redon Games</title>")],
@@ -47,7 +47,7 @@ const checks = [
   ["all pages include shared interaction script", pages.every((page) => page.includes("../scripts/site.js"))],
   ["no browser link to SPS server", allPages.every((page) => !page.includes("app.redongames.com"))],
   ["download page links to SPS Desktop installer", pages[3].includes(installerUrl)],
-  ["current SPS Desktop version", pages[3].includes("0.4.30")],
+  ["current SPS Desktop version", pages[3].includes("0.4.49")],
   ["private beta status", index.includes("Private feedback build")],
   ["privacy notice", pages[5].includes("What SPS collects")],
   ["beta terms", pages[6].includes("Private beta access")],
