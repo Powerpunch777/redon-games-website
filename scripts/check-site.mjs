@@ -56,7 +56,8 @@ const checks = [
   ["beta terms", pages[6].includes("Private beta access")],
   ["security contact", pages[7].includes("Report a vulnerability")],
   ["no legacy Paperclip product name", !index.toLowerCase().includes("paperclip")],
-  ["no public product source link", !index.includes("github.com/Powerpunch777/SPS")],
+  ["public SPS overview link", pages[2].includes("https://github.com/Powerpunch777/SPS")],
+  ["no private product source link", allPages.every((page) => !page.includes("github.com/Powerpunch777/SPS-Source"))],
 ];
 
 const failed = checks.filter(([, passed]) => !passed).map(([name]) => name);
