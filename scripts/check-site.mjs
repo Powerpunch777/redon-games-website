@@ -33,7 +33,6 @@ const pages = await Promise.all(
   ),
 );
 const allPages = [index, ...pages];
-const stableInstallerUrl = "https://github.com/Powerpunch777/SPS-Desktop-Releases/releases/download/v0.4.86/SPS-Desktop-Setup-0.4.86.exe";
 const previewInstallerUrl = "https://github.com/Powerpunch777/SPS-Desktop-Preview/releases/download/v0.4.90-preview.1/SPS-Desktop-Setup-0.4.90.exe";
 
 const checks = [
@@ -47,9 +46,9 @@ const checks = [
   ["independent page navigation", index.includes('href="./studio/"') && index.includes('href="./download/"')],
   ["all pages include shared interaction script", pages.every((page) => page.includes("../scripts/site.js"))],
   ["no browser link to SPS server", allPages.every((page) => !page.includes("app.redongames.com"))],
-  ["download page links to the signed SPS Desktop installer", pages[3].includes(stableInstallerUrl)],
+  ["unsigned stable installer stays quarantined", !pages[3].includes("SPS-Desktop-Releases/releases/download/")],
+  ["stable download security hold", pages[3].includes("Stable download temporarily paused")],
   ["download page links to the installation-test preview", pages[3].includes(previewInstallerUrl)],
-  ["current SPS Desktop version", pages[3].includes("0.4.86")],
   ["preview build warning", pages[3].includes("does not participate in SPS automatic updates")],
   ["private beta status", index.includes("Private feedback build")],
   ["privacy notice", pages[5].includes("What SPS collects")],
