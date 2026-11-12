@@ -1,0 +1,142 @@
+/* Image-led pages */
+.image-hero { position: relative; display: grid; align-items: end; isolation: isolate; background: var(--bg-secondary); }
+.image-hero-art, .image-hero::before { position: absolute; z-index: -1; inset: 0; }
+.image-hero-art img { width: 100%; height: 100%; object-fit: cover; object-position: center 47%; }
+.image-hero::before {
+  z-index: 0;
+  background: linear-gradient(90deg, rgb(5 10 18 / 78%), rgb(5 10 18 / 29%) 60%, transparent 85%),
+    linear-gradient(0deg, rgb(8 12 20 / 85%), transparent 64%);
+  content: "";
+}
+.image-hero-copy { position: relative; padding-block: 4rem clamp(3rem, 7.5vw, 7rem); }
+.image-hero .page-lede { color: #e2e9f4; }
+.home-hero .image-hero-art img { object-position: 70% 47%; }
+.home-hero { min-height: 85vh; min-height: clamp(580px, 85svh, 1020px); }
+.home-hero .image-hero-copy { padding-top: calc(var(--header-height) + 2rem); }
+.home-hero h1 > span { display: block; }
+.hero-subtitle {
+  margin-top: .45rem;
+  color: #e5ebf5;
+  font-size: .51em;
+  font-weight: 650;
+  letter-spacing: -.035em;
+}
+.home-hero .page-lede { max-width: 50ch; margin-top: 1.3rem; }
+.home-hero .hero-actions { margin-top: 1.7rem; }
+.games-hero { min-height: clamp(390px, 54svh, 650px); }
+.games-hero h1 { max-width: 15ch; }
+.games-hero .image-hero-art img { object-position: center 56%; }
+
+.featured-grid, .studio-intro, .game-project, .sps-hero {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+}
+.featured-card { display: flex; flex-direction: column; overflow: hidden; background: var(--bg-secondary); }
+.featured-art { height: clamp(175px, 24vw, 315px); overflow: hidden; }
+.featured-art > img { width: 100%; height: 100%; object-fit: cover; object-position: center 52%; }
+.featured-art--sps { display: flex; align-items: center; justify-content: center; padding: clamp(1rem, 2.8vw, 2.75rem); background: #172438; }
+.featured-art--sps > img { width: auto; height: auto; max-height: 100%; object-fit: contain; border: 1px solid #526381; border-radius: 4px; }
+.featured-copy { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: clamp(1.25rem, 2.8vw, 2.2rem); }
+.featured-copy .eyebrow { margin-bottom: .6rem; }
+.featured-copy h3 { font-size: clamp(1.5rem, 2.8vw, 2.1rem); }
+.featured-copy h3 + p { margin: .65rem 0 .7rem; }
+.featured-copy .text-link { margin-top: auto; }
+.studio-intro { align-items: center; gap: clamp(2rem, 6vw, 6.5rem); }
+.studio-intro img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border: 1px solid var(--line); border-radius: 4px; }
+.studio-intro-copy p:not(.eyebrow) { max-width: 48ch; margin-block: 1rem 1.35rem; }
+
+.game-project { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 0; overflow: hidden; }
+.game-art { min-height: 310px; }
+.game-art img { width: 100%; height: 100%; object-fit: cover; }
+.game-project-copy { display: grid; align-content: center; padding: clamp(1.5rem, 5vw, 4rem); }
+.game-project-copy .beta-status { margin-top: .7rem; }
+.project-description { margin-top: 1.3rem; }
+
+/* SPS */
+.sps-hero {
+  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+  align-items: center;
+  gap: clamp(1.75rem, 4vw, 4rem);
+}
+.sps-product { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.4rem; color: var(--text); font-size: 1.2rem; font-weight: 800; letter-spacing: .12em; }
+.sps-product img { border-radius: 4px; }
+.sps-hero h1 { font-size: clamp(2.1rem, 4.5vw, 4.4rem); text-wrap: wrap; }
+.sps-hero h1 span { display: block; }
+.sps-hero .hero-actions { margin-block: 1.55rem 1.1rem; }
+.product-figure {
+  align-self: center;
+  padding: clamp(.75rem, 2.3vw, 1.75rem);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--bg-secondary);
+}
+.product-figure img { width: 100%; height: auto; border-radius: 3px; }
+.product-figure figcaption { margin-top: .75rem; color: var(--muted); font-size: .8rem; }
+.feature-grid, .use-case-grid, .values-grid, .contact-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .9rem;
+}
+.feature-number { display: block; margin-bottom: 1.5rem; color: #85b5ff; font-size: .78rem; font-weight: 700; }
+.architecture-flow { display: grid; grid-template-columns: minmax(0, 1fr) 1.3rem minmax(0, 1fr) 1.3rem minmax(0, 1fr); align-items: stretch; gap: .8rem; }
+.flow-arrow { display: grid; place-items: center; color: #85b5ff; }
+.access-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.access-inner p { max-width: 64ch; margin-top: .9rem; }
+.access-inner .hero-actions { flex-shrink: 0; }
+
+/* Studio, contact, download, and policy pages */
+.subpage-hero, .policy-hero {
+  padding-block: var(--section-space) clamp(2rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--line);
+}
+.studio-statement {
+  display: grid;
+  max-width: 980px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem clamp(1.5rem, 4vw, 4rem);
+  margin-top: 2rem;
+  font-size: 1.05rem;
+}
+.values-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.contact-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.contact-title { font-size: clamp(1.3rem, 2.3vw, 1.65rem); }
+.contact-title + p { margin-top: .7rem; }
+.contact-options .text-link { margin-top: .6rem; }
+.contact-email-note { margin-top: 1.3rem; }
+.contact-email-note a, .policy-document a { color: #85b5ff; text-decoration: underline; text-underline-offset: .2em; }
+.download-content { display: grid; gap: 1rem; }
+.download-panel { padding: clamp(1.25rem, 4vw, 3rem); }
+.download-panel--preview { border-top: 2px solid var(--accent); }
+.download-panel h2 { max-width: 32ch; margin-bottom: 1rem; font-size: clamp(1.8rem, 3.4vw, 3rem); }
+.download-panel > p:not(.eyebrow) { max-width: 78ch; margin-bottom: 1rem; }
+.download-emphasis { color: var(--text); font-weight: 650; }
+.download-access { padding-top: 2rem; }
+.policy-hero, .policy-content { width: min(var(--content), 920px); margin-inline: auto; }
+.policy-content { padding-block: clamp(2rem, 5vw, 4rem) var(--section-space); }
+.policy-updated { margin-bottom: 2rem; color: #85b5ff; font-size: .8rem; }
+.policy-document h2 { margin: 2rem 0 .8rem; font-size: clamp(1.5rem, 3vw, 2rem); }
+.policy-document p + p { margin-top: .8rem; }
+
+@media (max-width: 1020px) {
+  .feature-grid, .use-case-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .access-inner { align-items: flex-start; flex-direction: column; gap: 1.25rem; }
+}
+
+@media (max-width: 760px) {
+  .image-hero { grid-template-columns: minmax(0, 1fr); }
+  .image-hero-art { position: relative; z-index: 0; height: clamp(195px, 56vw, 390px); }
+  .image-hero::before { content: none; }
+  .home-hero, .games-hero { min-height: 0; }
+  .home-hero .image-hero-copy, .image-hero-copy { padding-block: 1.9rem 2.5rem; }
+  .image-hero .page-lede { color: var(--muted); }
+  .image-hero h1 { font-size: clamp(2.85rem, 10vw, 4.75rem); }
+  .hero-subtitle { font-size: .54em; }
+  .featured-grid, .studio-intro, .game-project, .sps-hero, .feature-grid, .use-case-grid, .values-grid, .contact-options, .studio-statement { grid-template-columns: 1fr; }
+  .featured-art { height: auto; aspect-ratio: 16 / 9; }
+  .game-art { min-height: 0; aspect-ratio: 16 / 9; }
+  .sps-hero h1 { font-size: clamp(2.1rem, 8.5vw, 3.7rem); }
+  .architecture-flow { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+  .flow-arrow { min-height: 22px; transform: rotate(90deg); }
+  .download-panel .hero-actions { align-items: flex-start; flex-direction: column; }
+}

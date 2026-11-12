@@ -8,16 +8,76 @@
     <meta property="og:title" content="Security — REDON Games" />
     <meta property="og:description" content="Security reporting guidance for SPS Desktop private beta." />
     <meta property="og:image" content="https://redongames.com/assets/sps-logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://redongames.com/security/" />
     <link rel="canonical" href="https://redongames.com/security/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&amp;display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
     <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../styles/pages.css" />
     <title>Security — REDON Games</title>
   </head>
   <body class="inner-page">
     <a class="skip-link" href="#main" data-en="Skip to content" data-ko="본문으로 건너뛰기">Skip to content</a>
-    <header class="site-header"><a class="brand" href="../" aria-label="REDON Games home"><span class="brand-monogram" aria-hidden="true">R</span><span>REDON GAMES</span></a><nav class="desktop-nav" aria-label="Main navigation"><a href="../games/" data-en="Games" data-ko="게임">Games</a><a href="../sps/" data-en="SPS" data-ko="SPS">SPS</a><a href="../studio/" data-en="Studio" data-ko="스튜디오">Studio</a><a href="../contact/" data-en="Contact" data-ko="문의">Contact</a></nav><div class="header-actions"><div class="language-switch" role="group" aria-label="Language selection"><button type="button" class="language-button is-active" data-language="en" aria-pressed="true">EN</button><span aria-hidden="true">/</span><button type="button" class="language-button" data-language="ko" aria-pressed="false">KO</button></div><button class="menu-button" type="button" aria-label="Open navigation" data-menu-open-en="Open navigation" data-menu-close-en="Close navigation" data-menu-open-ko="메뉴 열기" data-menu-close-ko="메뉴 닫기" aria-expanded="false" aria-controls="mobile-navigation"><span></span><span></span><span></span></button></div></header>
-    <nav id="mobile-navigation" class="mobile-navigation" aria-label="Mobile navigation" hidden><a href="../games/" data-en="Games" data-ko="게임">Games</a><a href="../sps/" data-en="SPS" data-ko="SPS">SPS</a><a href="../studio/" data-en="Studio" data-ko="스튜디오">Studio</a><a href="../contact/" data-en="Contact" data-ko="문의">Contact</a></nav>
+    <header class="site-header">
+      <div class="header-inner page-width">
+        <a class="brand" href="../" aria-label="REDON Games home" data-label-ko="REDON Games 홈">
+          <span class="brand-monogram" aria-hidden="true">R</span>
+          <span>REDON GAMES</span>
+        </a>
+        <nav id="mobile-navigation" class="primary-nav" aria-label="Main navigation" data-label-ko="주 메뉴">
+          <a href="../games/" data-en="Games" data-ko="게임">Games</a>
+          <a href="../sps/" data-en="SPS" data-ko="SPS">SPS</a>
+          <a href="../studio/" data-en="Studio" data-ko="스튜디오">Studio</a>
+          <a href="../contact/" data-en="Contact" data-ko="문의">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <div class="language-switch" role="group" aria-label="Language selection" data-label-ko="언어 선택">
+            <button type="button" class="language-button" data-language="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
+            <span aria-hidden="true">/</span>
+            <button type="button" class="language-button" data-language="ko" lang="ko" aria-label="한국어" aria-pressed="false">KO</button>
+          </div>
+          <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
     <main id="main"><section class="page-hero page-hero--sps policy-hero" aria-labelledby="page-title"><p class="page-kicker" data-en="SPS Desktop / private beta" data-ko="SPS Desktop / 비공개 베타">SPS Desktop / private beta</p><h1 id="page-title" data-en="Security is part of the work." data-ko="보안도 작업의 일부입니다.">Security is part of the work.</h1><p class="page-lede" data-en="A small beta still needs a clear way to report a problem. Please help us improve SPS without putting people or systems at risk." data-ko="작은 베타에도 문제를 알릴 명확한 경로가 필요합니다. 사람이나 시스템을 위험에 빠뜨리지 않는 방식으로 SPS 개선에 도움을 주세요.">A small beta still needs a clear way to report a problem. Please help us improve SPS without putting people or systems at risk.</p></section><section class="page-content policy-content"><p class="policy-updated" data-en="Last updated: July 28, 2026" data-ko="최종 업데이트: 2026년 7월 28일">Last updated: July 28, 2026</p><article class="policy-document"><h2 data-en="Report a vulnerability" data-ko="취약점 제보">Report a vulnerability</h2><p data-en="Email redongames1234@gmail.com with the subject “SPS Security.” Include a clear description, affected SPS version, steps to reproduce, impact, and any safe proof of concept. Do not include real secrets, private project files, or another person's data." data-ko="제목에 “SPS Security”를 적어 redongames1234@gmail.com으로 보내주세요. 명확한 설명, 영향받는 SPS 버전, 재현 단계, 영향도, 안전한 개념 증명을 포함해 주세요. 실제 비밀 정보, 비공개 프로젝트 파일, 타인의 데이터는 포함하지 마세요.">Email redongames1234@gmail.com with the subject “SPS Security.” Include a clear description, affected SPS version, steps to reproduce, impact, and any safe proof of concept. Do not include real secrets, private project files, or another person's data.</p><h2 data-en="Test safely" data-ko="안전한 테스트">Test safely</h2><p data-en="Only test on systems and accounts you own or have written permission to test. Do not disrupt service, use denial-of-service techniques, attempt social engineering, access another person's workspace, or probe third-party services not operated by Redon Games." data-ko="소유하거나 서면 허가를 받은 시스템과 계정에서만 테스트하세요. 서비스 운영을 방해하거나 서비스 거부 기법을 사용하지 말고, 사회공학을 시도하거나 다른 사람의 워크스페이스에 접근하거나 Redon Games가 운영하지 않는 제3자 서비스를 탐색해서는 안 됩니다.">Only test on systems and accounts you own or have written permission to test. Do not disrupt service, use denial-of-service techniques, attempt social engineering, access another person's workspace, or probe third-party services not operated by Redon Games.</p><h2 data-en="What we are securing" data-ko="보호 대상">What we are securing</h2><p data-en="The SPS beta includes a local-first Desktop app, owner-hosted project workspaces, invited member connections, authentication, and optional plugins or external tools. The product uses signed node requests and local connection controls, but beta software can still contain defects. Keep the app current and keep backups of important work." data-ko="SPS 베타에는 로컬 우선 Desktop 앱, Owner 호스팅 프로젝트 워크스페이스, 초대된 멤버 연결, 인증, 선택형 플러그인과 외부 도구가 포함됩니다. 제품은 서명된 노드 요청과 로컬 연결 제어를 사용하지만, 베타 소프트웨어에는 여전히 결함이 있을 수 있습니다. 앱을 최신으로 유지하고 중요한 작업물은 백업하세요.">The SPS beta includes a local-first Desktop app, owner-hosted project workspaces, invited member connections, authentication, and optional plugins or external tools. The product uses signed node requests and local connection controls, but beta software can still contain defects. Keep the app current and keep backups of important work.</p><h2 data-en="What happens next" data-ko="제보 후 절차">What happens next</h2><p data-en="We will acknowledge a good-faith report, assess the issue, and coordinate a fix or mitigation when practical. There is no bug bounty program during this private beta. Please give us reasonable time to investigate before sharing details publicly." data-ko="선의의 제보는 접수 확인 후 문제를 평가하고, 가능할 때 수정 또는 완화 조치를 조율합니다. 이 비공개 베타에는 버그 바운티 프로그램이 없습니다. 세부 내용을 공개하기 전에 조사할 합리적인 시간을 주세요.">We will acknowledge a good-faith report, assess the issue, and coordinate a fix or mitigation when practical. There is no bug bounty program during this private beta. Please give us reasonable time to investigate before sharing details publicly.</p></article></section></main>
-    <footer class="site-footer"><div class="footer-main page-width"><a class="brand" href="../" aria-label="REDON Games home"><span class="brand-monogram" aria-hidden="true">R</span><span>REDON GAMES</span></a><nav class="footer-nav" aria-label="Site links"><a href="../games/" data-en="Games" data-ko="게임">Games</a><a href="../sps/" data-en="SPS" data-ko="SPS">SPS</a><a href="../studio/" data-en="Studio" data-ko="스튜디오">Studio</a><a href="../contact/" data-en="Contact" data-ko="문의">Contact</a></nav><a class="footer-github" href="https://github.com/Powerpunch777/SPS" target="_blank" rel="noopener" data-en="SPS on GitHub ↗" data-ko="GitHub의 SPS ↗">SPS on GitHub ↗</a></div><div class="footer-bottom page-width"><span>© 2026 REDON Games</span><nav class="footer-legal" aria-label="Legal links"><a href="../privacy/" data-en="Privacy" data-ko="개인정보">Privacy</a><a href="../terms/" data-en="Terms" data-ko="이용 조건">Terms</a><a href="../security/" data-en="Security" data-ko="보안">Security</a></nav><span data-en="We Build Worlds. And the Tools Behind Them." data-ko="우리는 세계를 만들고, 그 세계를 만드는 도구도 개발합니다.">We Build Worlds. And the Tools Behind Them.</span><div class="footer-locale language-switch" role="group" aria-label="Language selection"><button type="button" class="language-button is-active" data-language="en" aria-pressed="true">EN</button><span aria-hidden="true">/</span><button type="button" class="language-button" data-language="ko" aria-pressed="false">KO</button></div></div></footer>
-    <script src="../scripts/site.js"></script>
+
+    <footer class="site-footer">
+      <div class="footer-main page-width">
+        <a class="brand" href="../" aria-label="REDON Games home" data-label-ko="REDON Games 홈">
+          <span class="brand-monogram" aria-hidden="true">R</span>
+          <span>REDON GAMES</span>
+        </a>
+        <nav class="footer-nav" aria-label="Site links" data-label-ko="사이트 링크">
+          <a href="../games/" data-en="Games" data-ko="게임">Games</a>
+          <a href="../sps/" data-en="SPS" data-ko="SPS">SPS</a>
+          <a href="../studio/" data-en="Studio" data-ko="스튜디오">Studio</a>
+          <a href="../contact/" data-en="Contact" data-ko="문의">Contact</a>
+        </nav>
+        <a class="footer-github text-link" href="https://github.com/Powerpunch777/SPS" target="_blank" rel="noopener">
+          <span data-en="SPS on GitHub" data-ko="GitHub의 SPS">SPS on GitHub</span><span class="external-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="footer-bottom page-width">
+        <span>© 2026 REDON Games</span>
+        <nav class="footer-legal" aria-label="Legal links" data-label-ko="정책 및 보안">
+          <a href="../privacy/" data-en="Privacy" data-ko="개인정보">Privacy</a>
+          <a href="../terms/" data-en="Terms" data-ko="이용 조건">Terms</a>
+          <a href="../security/" aria-current="page" data-en="Security" data-ko="보안">Security</a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Language selection" data-label-ko="언어 선택">
+            <button type="button" class="language-button" data-language="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
+            <span aria-hidden="true">/</span>
+            <button type="button" class="language-button" data-language="ko" lang="ko" aria-label="한국어" aria-pressed="false">KO</button>
+          </div>
+      </div>
+    </footer>
+    <script src="../scripts/site.js" defer></script>
   </body>
 </html>

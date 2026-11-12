@@ -29,7 +29,9 @@ jobs:
           enablement: true
 
       - name: Verify static website
-        run: node scripts/check-site.mjs
+        run: |
+          node scripts/sync-shell.mjs --check
+          node scripts/check-site.mjs
 
       - uses: actions/upload-pages-artifact@v4
         with:

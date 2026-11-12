@@ -1,90 +1,101 @@
-const languageButtons = document.querySelectorAll(".language-button");
-const localizedElements = document.querySelectorAll("[data-en][data-ko]:not(meta)");
+const root = document.documentElement;
+const languageButtons = document.querySelectorAll("[data-language]");
+const localizedText = document.querySelectorAll("[data-en][data-ko]:not(meta)");
+const localizedLabels = Array.from(document.querySelectorAll("[data-label-ko]"), (element) => ({
+  element,
+  english: element.getAttribute("aria-label"),
+}));
+const localizedImages = Array.from(document.querySelectorAll("img[data-alt-ko]"), (element) => ({
+  element,
+  english: element.alt,
+}));
+const description = document.querySelector('meta[name="description"]');
 const menuButton = document.querySelector(".menu-button");
-const mobileNavigation = document.querySelector(".mobile-navigation");
+const navigation = document.querySelector(".primary-nav");
+const mobile = window.matchMedia("(max-width: 760px)");
+const menuLabels = {
+  en: { open: "Close navigation", closed: "Open navigation" },
+  ko: { open: "메뉴 닫기", closed: "메뉴 열기" },
+};
 
-function closeMenu() {
-  if (!menuButton || !mobileNavigation) return;
-  menuButton.setAttribute("aria-expanded", "false");
-  mobileNavigation.hidden = true;
-  const language = document.documentElement.lang === "ko" ? "ko" : "en";
-  const suffix = language[0].toUpperCase() + language.slice(1);
-  menuButton.setAttribute("aria-label", menuButton.dataset[`menuOpen${suffix}`] ?? "Open navigation");
+function menuIsOpen() {
+  return menuButton.getAttribute("aria-expanded") === "true";
 }
 
-function setLanguage(language, { persist = true } = {}) {
-  const selectedLanguage = language === "ko" ? "ko" : "en";
-  document.documentElement.lang = selectedLanguage;
-  localizedElements.forEach((element) => {
-    element.textContent = element.dataset[selectedLanguage];
+function updateMenuLabel() {
+  menuButton.setAttribute("aria-label", menuLabels[root.lang][menuIsOpen() ? "open" : "closed"]);
+}
+
+function setMenu(open) {
+  menuButton.setAttribute("aria-expanded", String(open));
+  navigation.classList.toggle("is-open", open);
+  updateMenuLabel();
+}
+
+function setLanguage(language) {
+  root.lang = language;
+  const korean = language === "ko";
+
+  localizedText.forEach((element) => {
+    element.textContent = element.dataset[language];
+  });
+  localizedLabels.forEach(({ element, english }) => {
+    element.setAttribute("aria-label", korean ? element.dataset.labelKo : english);
+  });
+  localizedImages.forEach(({ element, english }) => {
+    element.alt = korean ? element.dataset.altKo : english;
   });
   languageButtons.forEach((button) => {
-    const active = button.dataset.language === selectedLanguage;
-    button.classList.toggle("is-active", active);
-    button.setAttribute("aria-pressed", String(active));
+    button.setAttribute("aria-pressed", String(button.dataset.language === language));
   });
-
-  const suffix = selectedLanguage[0].toUpperCase() + selectedLanguage.slice(1);
-  const title = document.documentElement.dataset[`pageTitle${suffix}`];
-  if (title) document.title = title;
-  const description = document.querySelector('meta[name="description"]');
-  if (description?.dataset[selectedLanguage]) description.content = description.dataset[selectedLanguage];
-
-  if (menuButton) {
-    const open = menuButton.getAttribute("aria-expanded") === "true";
-    const labelKey = open ? `menuClose${suffix}` : `menuOpen${suffix}`;
-    menuButton.setAttribute("aria-label", menuButton.dataset[labelKey] ?? "Open navigation");
-  }
-
-  if (persist) {
-    try {
-      localStorage.setItem("redon-language", selectedLanguage);
-    } catch {
-      // The selected language still works for this page when storage is unavailable.
-    }
-  }
+  document.title = korean ? root.dataset.pageTitleKo : root.dataset.pageTitleEn;
+  description.content = description.dataset[language];
+  updateMenuLabel();
 }
 
 languageButtons.forEach((button) => {
-  button.addEventListener("click", () => setLanguage(button.dataset.language));
+  button.addEventListener("click", () => {
+    const language = button.dataset.language;
+    setLanguage(language);
+    try {
+      localStorage.setItem("redon-language", language);
+    } catch {
+      // Visitors can still switch languages when storage is blocked.
+    }
+  });
 });
 
-if (menuButton && mobileNavigation) {
-  menuButton.addEventListener("click", () => {
-    const open = menuButton.getAttribute("aria-expanded") !== "true";
-    menuButton.setAttribute("aria-expanded", String(open));
-    mobileNavigation.hidden = !open;
-    const language = document.documentElement.lang === "ko" ? "ko" : "en";
-    const suffix = language[0].toUpperCase() + language.slice(1);
-    const labelKey = open ? `menuClose${suffix}` : `menuOpen${suffix}`;
-    menuButton.setAttribute("aria-label", menuButton.dataset[labelKey] ?? "Open navigation");
-  });
+menuButton.addEventListener("click", () => {
+  const open = !menuIsOpen();
+  setMenu(open);
+  if (open) navigation.querySelector("a").focus();
+});
 
-  mobileNavigation.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && menuIsOpen()) {
+    setMenu(false);
+    menuButton.focus();
+  }
+});
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
-      closeMenu();
-      menuButton.focus();
-    }
-  });
+document.addEventListener("pointerdown", (event) => {
+  if (menuIsOpen() && !event.target.closest(".site-header")) setMenu(false);
+});
 
-  document.addEventListener("pointerdown", (event) => {
-    if (menuButton.getAttribute("aria-expanded") === "true" &&
-        !mobileNavigation.contains(event.target) &&
-        !menuButton.contains(event.target)) {
-      closeMenu();
-    }
-  });
-}
+document.querySelector(".site-header").addEventListener("focusout", (event) => {
+  if (menuIsOpen() && event.relatedTarget && !event.currentTarget.contains(event.relatedTarget)) {
+    setMenu(false);
+  }
+});
+
+mobile.addEventListener("change", () => setMenu(false));
 
 let preferredLanguage = "en";
 try {
-  const storedLanguage = localStorage.getItem("redon-language");
-  if (storedLanguage === "ko" || storedLanguage === "en") preferredLanguage = storedLanguage;
+  if (localStorage.getItem("redon-language") === "ko") preferredLanguage = "ko";
 } catch {
-  // Use English when the browser blocks local storage.
+  // English is the default.
 }
-setLanguage(preferredLanguage, { persist: false });
+
+setLanguage(preferredLanguage);
+root.classList.add("has-js");

@@ -14,11 +14,20 @@ The bilingual static website for REDON Games, an independent game studio buildin
 
 The website uses static HTML, CSS, and JavaScript and is published through GitHub Pages. It does not store SPS accounts, workspace details, project files, or user data. English is the default language; the EN/KO switch keeps the current route and saves the visitor's preference when browser storage is available.
 
-Artwork and the SPS logo are provided as responsive WebP assets, with the original PNG artwork retained as a fallback. Keep the `/download/` status aligned with the [SPS Desktop release channel](https://github.com/Powerpunch777/SPS-Desktop-Releases/releases) and [installation-preview channel](https://github.com/Powerpunch777/SPS-Desktop-Preview/releases). The current stable download is paused; the preview is for installation and first-launch testing only.
+The site uses responsive WebP key art and a cropped SPS Desktop development screenshot showing Host settings. The Studio image uses a separate crop of the same key art. Keep the `/download/` status aligned with the [SPS Desktop release channel](https://github.com/Powerpunch777/SPS-Desktop-Releases/releases) and [installation-preview channel](https://github.com/Powerpunch777/SPS-Desktop-Preview/releases). The current stable download is paused; the preview is for installation and first-launch testing only.
+
+## Editing pages
+
+Each route is a static HTML page. Keep the English text and its Korean counterpart together in the page body with paired `data-en` and `data-ko` attributes. Base styles and design tokens live in `styles.css`, with layouts in `styles/pages.css`.
+
+Update the shared navigation in `scripts/sync-shell.mjs` and run `node scripts/sync-shell.mjs` to regenerate the headers and footers. The site serves the committed HTML directly, including when JavaScript is disabled.
+
+When RG-01 has approved public content for a detail page, use the existing Games artwork and project layout at `/games/rg-01/`. Include the project description, approved media and features, development status, and relevant external links. Register the page in the shell generator, site checker, and sitemap before linking the project card to it.
 
 ## Local preview
 
 ```powershell
+node .\scripts\sync-shell.mjs --check
 node .\scripts\check-site.mjs
 node .\scripts\preview-site.mjs
 ```

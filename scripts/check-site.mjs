@@ -1,97 +1,81 @@
 import { readFile, stat } from "node:fs/promises";
-import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const scriptDirectory = dirname(fileURLToPath(import.meta.url));
-const siteDirectory = resolve(scriptDirectory, "..");
-const requiredFiles = [
-  "index.html",
-  "styles.css",
-  "scripts/site.js",
-  "studio/index.html",
-  "games/index.html",
-  "sps/index.html",
-  "download/index.html",
-  "contact/index.html",
-  "privacy/index.html",
-  "terms/index.html",
-  "security/index.html",
-  "robots.txt",
-  "sitemap.xml",
-  "assets/redon-hero-keyart.png",
-  "assets/redon-hero-900.webp",
-  "assets/redon-hero-1500.webp",
-  "assets/sps-logo.webp",
-];
+const origin = "https://redongames.com";
+const pages = ["/", "/studio/", "/games/", "/sps/", "/download/", "/contact/", "/privacy/", "/terms/", "/security/"];
+const root = new URL("../", import.meta.url);
+const read = (path) => readFile(new URL(path, root), "utf8");
+const pageEntries = await Promise.all(pages.map(async (route) => [
+  route,
+  await read(`.${route}index.html`),
+]));
+const source = new Map(pageEntries);
+const home = source.get("/");
+const sps = source.get("/sps/");
+const download = source.get("/download/");
+const stylesheet = await read("styles.css");
+const sitemap = await read("sitemap.xml");
+const previewInstaller = "https://github.com/Powerpunch777/SPS-Desktop-Preview/releases/download/v0.4.90-preview.1/SPS-Desktop-Setup-0.4.90.exe";
+const brokenLinks = [];
 
-for (const file of requiredFiles) {
-  await stat(resolve(siteDirectory, file));
-}
-
-const index = await readFile(resolve(siteDirectory, "index.html"), "utf8");
-const stylesheet = await readFile(resolve(siteDirectory, "styles.css"), "utf8");
-const script = await readFile(resolve(siteDirectory, "scripts/site.js"), "utf8");
-const pageNames = ["studio", "games", "sps", "download", "contact", "privacy", "terms", "security"];
-const pages = await Promise.all(pageNames.map((page) =>
-  readFile(resolve(siteDirectory, page, "index.html"), "utf8"),
-));
-const pageByName = Object.fromEntries(pageNames.map((name, index) => [name, pages[index]]));
-const allPages = [index, ...pages];
-const previewInstallerUrl = "https://github.com/Powerpunch777/SPS-Desktop-Preview/releases/download/v0.4.90-preview.1/SPS-Desktop-Setup-0.4.90.exe";
-const sourceFiles = ["index.html", ...pageNames.map((page) => `${page}/index.html`)];
-const missingLocalTargets = [];
-for (const sourceFile of sourceFiles) {
-  const source = sourceFile === "index.html" ? index : pageByName[sourceFile.split("/")[0]];
-  const sourceDirectory = dirname(resolve(siteDirectory, sourceFile));
-  const references = [...source.matchAll(/(?:href|src)="([^"]+)"/g)].map((match) => match[1]);
+for (const [route, page] of source) {
+  const references = [...page.matchAll(/\b(?:href|src)="([^"]+)"/g)].map(([, value]) => value);
+  for (const [, candidates] of page.matchAll(/\bsrcset="([^"]+)"/g)) {
+    references.push(...candidates.split(",").map((candidate) => candidate.trim().split(/\s+/)[0]));
+  }
   for (const reference of references) {
-    if (!reference.startsWith("./") && !reference.startsWith("../")) continue;
-    const cleanReference = decodeURIComponent(reference.split(/[?#]/, 1)[0]);
-    let target = resolve(sourceDirectory, cleanReference);
+    const target = new URL(reference, origin + route);
+    if (target.origin !== origin) continue;
+    const pathname = target.pathname.replace(/index\.html$/, "");
+    const targetPage = source.get(pathname);
+    if (targetPage) {
+      if (target.hash && !targetPage.includes(`id="${decodeURIComponent(target.hash.slice(1))}"`)) {
+        brokenLinks.push(`${route} → ${reference}`);
+      }
+      continue;
+    }
     try {
-      const targetInfo = await stat(target);
-      if (targetInfo.isDirectory()) target = resolve(target, "index.html");
-      await stat(target);
+      const file = new URL(`.${pathname}`, root);
+      if (!(await stat(fileURLToPath(file))).isFile()) brokenLinks.push(`${route} → ${reference}`);
     } catch {
-      missingLocalTargets.push(`${sourceFile} -> ${reference}`);
+      brokenLinks.push(`${route} → ${reference}`);
     }
   }
 }
 
 const checks = [
-  ["brand message and studio identity", index.includes("We Build Worlds.") && index.includes("Independent game studio")],
-  ["canonical home URL", index.includes('href="https://redongames.com/"')],
-  ["responsive WebP hero image", index.includes("redon-hero-900.webp") && index.includes("redon-hero-1500.webp")],
-  ["content max width and palette", stylesheet.includes("1280px") && stylesheet.includes("#0b0f17") && stylesheet.includes("#438bff")],
-  ["visible keyboard focus", stylesheet.includes(":focus-visible")],
-  ["mobile navigation and accessible toggle", index.includes('id="mobile-navigation"') && script.includes('event.key === "Escape"')],
-  ["reduced motion support", stylesheet.includes("prefers-reduced-motion: reduce")],
-  ["language switch and stored preference", index.includes('data-language="ko"') && script.includes('localStorage.setItem("redon-language"')],
-  ["language switch in every page header and footer", allPages.every((page) => page.includes('class="footer-locale language-switch"') && (page.match(/data-language="ko"/g) ?? []).length >= 2)],
-  ["consistent primary navigation on every page", allPages.every((page) => {
-    const navigation = page.match(/<nav class="desktop-nav"[^>]*>(.*?)<\/nav>/s)?.[1] ?? "";
-    return navigation.includes('data-en="Games"') && navigation.includes('data-en="SPS"') && navigation.includes('data-en="Studio"') && navigation.includes('data-en="Contact"') && !navigation.includes("Technology") && !navigation.includes("Download");
-  })],
-  ["main navigation uses SPS, not Technology or Download", index.includes('data-en="SPS"') && !index.includes('data-en="Technology"') && !index.includes('data-en="Download"')],
-  ["all existing public routes are present", pageNames.every((name) => pageByName[name].includes("<main") || name === "studio")],
-  ["local page and asset links resolve", missingLocalTargets.length === 0],
-  ["shared interaction script on each page", pages.every((page) => page.includes("../scripts/site.js"))],
-  ["no browser link to the SPS server", allPages.every((page) => !page.includes("app.redongames.com"))],
-  ["stable downloads stay paused", pageByName.download.includes("There is no approved stable installer available right now")],
-  ["preview points to the approved installation-test build", pageByName.download.includes(previewInstallerUrl)],
-  ["preview is clearly testing-only", pageByName.download.includes("installation and first-launch testing only") && pageByName.download.includes("Automatic updates are disabled")],
-  ["SPS private-beta status", pageByName.sps.includes("Private Beta — Development in Progress")],
-  ["SPS feature scope is qualified", pageByName.sps.includes("Available plugins vary by build") && pageByName.sps.includes("does not promise that every workflow is available")],
-  ["no public builder or marketplace claim", !pageByName.sps.includes("SPS Builder") && !pageByName.sps.toLowerCase().includes("marketplace")],
-  ["RG-01 only, with no invented game title", pageByName.games.includes("RG-01") && !pageByName.games.includes("Untitled world project")],
-  ["legal and security routes retained", pageByName.privacy.includes("What SPS collects") && pageByName.terms.includes("Private beta access") && pageByName.security.includes("Report a vulnerability")],
-  ["security reporting route retained", pageByName.contact.includes("../security/")],
-  ["no private SPS source link", allPages.every((page) => !page.includes("github.com/Powerpunch777/SPS-Source"))],
+  ["homepage brand and project links", home.includes("We Build Worlds.") && home.includes("independent game studio") && home.includes('href="./games/"') && home.includes('href="./sps/"')],
+  ["responsive WebP key art", home.includes("redon-hero-900.webp 900w") && home.includes("redon-hero-1500.webp 1500w")],
+  ["SPS development screenshot", [home, sps].every((page) => page.includes("sps-desktop-host-settings.webp") && page.includes("data-alt-ko="))],
+  ["shared color palette and width", ["1280px", "#0b0f17", "#438bff", "#1b2535"].every((token) => stylesheet.includes(token))],
+  ["keyboard focus and reduced motion styles", stylesheet.includes(":focus-visible") && stylesheet.includes("prefers-reduced-motion: reduce")],
+  ["canonical, Open Graph, and sitemap routes", pageEntries.every(([route, page]) => (
+    page.includes(`rel="canonical" href="${origin}${route}"`) &&
+    page.includes(`property="og:url" content="${origin}${route}"`) &&
+    sitemap.includes(`<loc>${origin}${route}</loc>`)
+  ))],
+  ["one primary heading and main landmark per page", pageEntries.every(([, page]) => (
+    (page.match(/<h1[\s>]/g) ?? []).length === 1 && (page.match(/<main[\s>]/g) ?? []).length === 1
+  ))],
+  ["two bilingual controls and one responsive navigation per page", pageEntries.every(([, page]) => (
+    (page.match(/data-language="ko"/g) ?? []).length === 2 &&
+    (page.match(/id="mobile-navigation"/g) ?? []).length === 1 &&
+    page.includes('aria-controls="mobile-navigation"') &&
+    page.includes("scripts/site.js")
+  ))],
+  ["local routes, images, and fragment links resolve", brokenLinks.length === 0],
+  ["stable distribution remains paused", download.includes("Stable installers are currently unavailable on this website")],
+  ["approved installation-test preview", download.includes(previewInstaller) && download.includes("installation and first-launch testing only") && download.includes("Automatic updates are disabled")],
+  ["SPS private beta and workflow availability", sps.includes("Private Beta — Development in Progress") && sps.includes("Available plugins vary by build") && sps.includes("Workflow availability depends")],
+  ["no public link to internal SPS services or code", pageEntries.every(([, page]) => !page.includes("app.redongames.com") && !page.includes("github.com/Powerpunch777/SPS-Source"))],
+  ["no public Builder or marketplace claim", !/SPS Builder|marketplace/i.test(sps)],
+  ["RG-01 development listing", source.get("/games/").includes("RG-01") && source.get("/games/").includes("In Development")],
+  ["legal and security notices and reporting route", source.get("/privacy/").includes("What SPS collects") && source.get("/terms/").includes("Private beta access") && source.get("/security/").includes("Report a vulnerability") && source.get("/contact/").includes('href="../security/"')],
 ];
 
 const failed = checks.filter(([, passed]) => !passed).map(([name]) => name);
-if (failed.length > 0) {
-  throw new Error(`Redon Games website check failed: ${failed.join(", ")}`);
+if (failed.length) {
+  throw new Error(`Redon Games website check failed: ${[...failed, ...brokenLinks].join(", ")}`);
 }
 
-console.log(`Redon Games website check passed (${checks.length} checks).`);
+console.log(`Redon Games website check passed (${checks.length} checks across ${pages.length} pages).`);
