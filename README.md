@@ -1,39 +1,28 @@
 # Redon Games Website
 
-This public repository contains the static studio website for
-`https://redongames.com`. It introduces Redon Games, its in-development game
-work, and SPS as a separate technology product. SPS product code, Core
-runtime, Desktop host code, credentials, and operational configuration do not
-belong here.
+This repository is Redon's bilingual public website. It introduces the studio, its games, and SPS—the local-first Desktop workspace product for teams who want AI capability, durable project context, and control over where work lives.
 
-## Site map
+## Pages
 
-- `/` - studio-facing home and current private-beta framing
-- `/studio/` - Redon's working principles
-- `/games/` - the first in-development game project
-- `/sps/` - SPS product overview
-- `/download/` - SPS Desktop release status and private-testing guidance
-- `/contact/` - feedback and beta access contact
-- `/privacy/`, `/terms/`, `/security/` - private-beta privacy, use, and security reporting notices
+- `/` — Redon Games home
+- `/studio/` — studio direction and working principles
+- `/games/` — game projects
+- `/sps/` — SPS product description, Workspace and plugin model, and feedback access
+- `/download/` — approved Desktop release and installation-preview links
+- `/contact/` — studio contact and beta access requests
+- `/privacy/`, `/terms/`, `/security/` — product notices and security reporting
 
-The website is English-first. The EN/KO switch persists the selected language
-while a visitor moves between pages.
+The site is English-first with a Korean language switch. The SPS page describes the product; it does not host SPS Desktop, user accounts, Host services, Workspace data, or project source code. Keep download status tied to the actual [SPS Desktop release channel](https://github.com/Powerpunch777/SPS-Desktop-Releases/releases) and [Preview channel](https://github.com/Powerpunch777/SPS-Desktop-Preview/releases).
 
-## Local check
+## Local preview
 
 ```powershell
 node .\scripts\check-site.mjs
 node .\scripts\preview-site.mjs
 ```
 
-Open `http://127.0.0.1:4173`. Request `/_shutdown` to stop the preview.
+Open `http://127.0.0.1:4173`. Request `/_shutdown` to stop the preview server.
 
-## Hosting
+## Publishing
 
-GitHub Pages deploys from the `main` branch through
-`.github/workflows/deploy-pages.yml`. Configure `redongames.com` as the
-repository's Custom domain in GitHub Pages settings, then use the GitHub Pages
-apex DNS records in Cloudflare. The static site remains deliberately separate
-from SPS workspaces. It links to a versioned SPS Desktop release asset only
-while a clean, signed build is approved for distribution; authentication and
-workspace access begin only inside the installed app.
+GitHub Pages deploys from `main` through `.github/workflows/deploy-pages.yml`. Configure `redongames.com` as the repository's Custom domain and set the corresponding DNS records. Product authentication and Workspace access begin inside the installed Desktop app, not on this static site.
