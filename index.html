@@ -1,150 +1,119 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-page-title-en="REDON Games — We Build Worlds" data-page-title-ko="REDON Games — 세계를 만듭니다">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Redon Games is an independent game studio. SPS is our local-first AI development workspace for small teams." />
-    <meta name="theme-color" content="#0d0f12" />
-    <meta property="og:title" content="Redon Games" />
-    <meta property="og:description" content="An independent studio making worlds with a point of view." />
+    <meta name="description" content="REDON Games is an independent game studio creating original worlds and the tools behind them." data-en="REDON Games is an independent game studio creating original worlds and the tools behind them." data-ko="REDON Games는 오리지널 게임 세계와 그 제작에 필요한 도구를 만드는 독립 게임 스튜디오입니다." />
+    <meta name="theme-color" content="#0B0F17" />
+    <meta property="og:title" content="REDON Games — We Build Worlds" />
+    <meta property="og:description" content="An independent game studio creating original worlds and the tools behind them." />
     <meta property="og:image" content="https://redongames.com/assets/redon-hero-keyart.png" />
-    <meta property="og:url" content="https://redongames.com" />
+    <meta property="og:url" content="https://redongames.com/" />
     <meta property="og:type" content="website" />
-    <link rel="canonical" href="https://redongames.com" />
+    <link rel="canonical" href="https://redongames.com/" />
     <link rel="stylesheet" href="./styles.css" />
-    <title>Redon Games</title>
+    <title>REDON Games — We Build Worlds</title>
   </head>
-  <body>
+  <body class="home-page">
     <a class="skip-link" href="#main" data-en="Skip to content" data-ko="본문으로 건너뛰기">Skip to content</a>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Redon Games home">
-        <span class="brand-mark">R/</span><span>REDON GAMES</span>
-      </a>
+    <header class="site-header site-header--overlay">
+      <a class="brand" href="./" aria-label="REDON Games home"><span class="brand-monogram" aria-hidden="true">R</span><span>REDON GAMES</span></a>
       <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="./studio/" data-en="Studio" data-ko="스튜디오">Studio</a>
         <a href="./games/" data-en="Games" data-ko="게임">Games</a>
-        <a href="./sps/" data-en="Technology" data-ko="기술">Technology</a>
-        <a href="./download/" data-en="Download" data-ko="다운로드">Download</a>
+        <a href="./sps/" data-en="SPS" data-ko="SPS">SPS</a>
+        <a href="./studio/" data-en="Studio" data-ko="스튜디오">Studio</a>
         <a href="./contact/" data-en="Contact" data-ko="문의">Contact</a>
       </nav>
       <div class="header-actions">
-        <div class="language-switch" aria-label="Language selection">
+        <div class="language-switch" role="group" aria-label="Language selection">
           <button type="button" class="language-button is-active" data-language="en" aria-pressed="true">EN</button>
+          <span aria-hidden="true">/</span>
           <button type="button" class="language-button" data-language="ko" aria-pressed="false">KO</button>
         </div>
-        <a class="header-cta" href="./download/" data-en="Download SPS" data-ko="SPS 다운로드">Download SPS</a>
-        <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation">
-          <span></span><span></span><span></span>
-        </button>
+        <button class="menu-button" type="button" aria-label="Open navigation" data-menu-open-en="Open navigation" data-menu-close-en="Close navigation" data-menu-open-ko="메뉴 열기" data-menu-close-ko="메뉴 닫기" aria-expanded="false" aria-controls="mobile-navigation"><span></span><span></span><span></span></button>
       </div>
     </header>
-
     <nav id="mobile-navigation" class="mobile-navigation" aria-label="Mobile navigation" hidden>
-      <a href="./studio/" data-en="Studio" data-ko="스튜디오">Studio</a>
       <a href="./games/" data-en="Games" data-ko="게임">Games</a>
-      <a href="./sps/" data-en="Technology" data-ko="기술">Technology</a>
-      <a href="./download/" data-en="Download" data-ko="다운로드">Download</a>
+      <a href="./sps/" data-en="SPS" data-ko="SPS">SPS</a>
+      <a href="./studio/" data-en="Studio" data-ko="스튜디오">Studio</a>
       <a href="./contact/" data-en="Contact" data-ko="문의">Contact</a>
-      <a href="./download/" data-en="Download SPS" data-ko="SPS 다운로드">Download SPS</a>
     </nav>
 
     <main id="main">
-      <section id="top" class="hero" aria-labelledby="hero-title">
-        <img class="hero-art" src="./assets/redon-hero-keyart.png" alt="An original game-world scene of an explorer approaching an industrial monolith" />
+      <section id="top" class="home-hero" aria-labelledby="hero-title">
+        <picture class="hero-picture">
+          <source type="image/webp" srcset="./assets/redon-hero-900.webp 900w, ./assets/redon-hero-1500.webp 1500w" sizes="100vw" />
+          <img class="hero-art" src="./assets/redon-hero-keyart.png" alt="A lone explorer faces a vast, atmospheric world" fetchpriority="high" />
+        </picture>
         <div class="hero-shade" aria-hidden="true"></div>
-        <div class="hero-content">
-          <p class="eyebrow" data-en="Independent studio · private beta" data-ko="인디 스튜디오 · 비공개 베타">Independent studio · private beta</p>
-          <h1 id="hero-title">REDON<br />GAMES</h1>
-          <p class="hero-summary" data-en="Building worlds with a point of view. A working site for the people helping us make it sharper." data-ko="분명한 관점을 가진 세계를 만듭니다. 더 좋은 작업을 함께 만들어 갈 사람들을 위한 공간입니다.">Building worlds with a point of view. A working site for the people helping us make it sharper.</p>
-          <a class="quiet-link" href="./studio/" data-en="Explore the studio" data-ko="스튜디오 살펴보기">Explore the studio</a>
-        </div>
-        <aside class="hero-note" aria-label="Private beta availability">
-          <p class="eyebrow" data-en="Now inviting" data-ko="현재 초대 중">Now inviting</p>
-          <p data-en="Early collaborators and private feedback testers." data-ko="초기 협력자와 소수의 피드백 테스터를 초대하고 있습니다.">Early collaborators and private feedback testers.</p>
-          <small data-en="Seoul / Independent / 2026" data-ko="서울 / 인디펜던트 / 2026">Seoul / Independent / 2026</small>
-        </aside>
-      </section>
-
-      <section id="studio" class="section studio-section" aria-labelledby="studio-title">
-        <div class="section-label">01 / <span data-en="Studio" data-ko="스튜디오">Studio</span></div>
-        <div class="studio-layout">
-          <div>
-            <h2 id="studio-title"><span data-en="Small by design." data-ko="작게 시작합니다.">Small by design.</span> <em data-en="Serious by default." data-ko="진지하게 만듭니다.">Serious by default.</em></h2>
-          </div>
-          <div class="studio-copy">
-            <p data-en="Redon is an independent studio working at the intersection of authored worlds, practical tools, and close collaboration." data-ko="Redon은 세계를 설계하는 일, 실용적인 도구, 가까운 협업이 만나는 지점에서 작업하는 독립 스튜디오입니다.">Redon is an independent studio working at the intersection of authored worlds, practical tools, and close collaboration.</p>
-            <ol>
-              <li data-en="A smaller room keeps intent close to implementation." data-ko="작은 팀은 의도와 구현의 거리를 가깝게 만듭니다.">A smaller room keeps intent close to implementation.</li>
-              <li data-en="We invite perspective before polish makes change expensive." data-ko="수정이 비싸지기 전에 관점을 초대합니다.">We invite perspective before polish makes change expensive.</li>
-              <li data-en="Technology is part of the craft, not an afterthought." data-ko="기술은 나중에 덧붙이는 일이 아니라 제작의 일부입니다.">Technology is part of the craft, not an afterthought.</li>
-            </ol>
+        <div class="hero-content page-width">
+          <p class="eyebrow" data-en="Independent game studio" data-ko="독립 게임 스튜디오">Independent game studio</p>
+          <h1 id="hero-title"><span data-en="We Build Worlds." data-ko="우리는 세계를 만듭니다.">We Build Worlds.</span><span class="hero-subtitle" data-en="And the Tools Behind Them." data-ko="그리고 그 세계를 만드는 도구도.">And the Tools Behind Them.</span></h1>
+          <p class="hero-summary" data-en="An independent game studio creating original worlds and the technology behind them." data-ko="오리지널 게임 세계와 그 제작에 필요한 기술을 만드는 독립 스튜디오입니다.">An independent game studio creating original worlds and the technology behind them.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="./games/" data-en="Explore Games" data-ko="게임 살펴보기">Explore Games</a>
+            <a class="button button-outline" href="./sps/" data-en="Discover SPS" data-ko="SPS 알아보기">Discover SPS</a>
           </div>
         </div>
+        <a class="hero-scroll" href="#building" data-en="Scroll to explore" data-ko="아래에서 더 보기"><span aria-hidden="true"></span>Scroll to explore</a>
       </section>
 
-      <section id="games" class="section games-section" aria-labelledby="games-title">
-        <div class="section-label">02 / <span data-en="Games" data-ko="게임">Games</span></div>
+      <section id="building" class="section featured-section page-width" aria-labelledby="featured-title">
         <div class="section-heading">
-          <h2 id="games-title"><span data-en="One world" data-ko="하나의 세계가">One world</span> <em data-en="taking shape." data-ko="형태를 갖추는 중입니다.">taking shape.</em></h2>
-          <p data-en="We are sharing process early, not a finished catalog. Our first original project is in active development." data-ko="완성된 카탈로그가 아니라 제작 과정을 먼저 공유합니다. 첫 번째 오리지널 프로젝트를 개발 중입니다.">We are sharing process early, not a finished catalog. Our first original project is in active development.</p>
+          <p class="eyebrow" data-en="Our work" data-ko="우리가 만드는 것">Our work</p>
+          <h2 id="featured-title" data-en="What We’re Building" data-ko="지금 만들고 있습니다">What We’re Building</h2>
         </div>
-        <article class="project-card">
-          <div class="project-meta"><span data-en="Project file / RG-01" data-ko="프로젝트 파일 / RG-01">Project file / RG-01</span><span data-en="In development" data-ko="개발 중">In development</span></div>
-          <div>
-            <p class="project-tag" data-en="World exploration · systems design" data-ko="월드 탐험 · 시스템 디자인">World exploration · systems design</p>
-            <h3 data-en="Untitled world project" data-ko="제목 미정 월드 프로젝트">Untitled world project</h3>
-          </div>
-          <p data-en="We will share the work when there is something honest to show." data-ko="정직하게 보여줄 수 있는 것이 생겼을 때 작업을 공개하겠습니다.">We will share the work when there is something honest to show.</p>
-        </article>
+        <div class="featured-grid">
+          <a class="featured-card featured-card--game" href="./games/">
+            <img src="./assets/redon-hero-900.webp" srcset="./assets/redon-hero-900.webp 900w, ./assets/redon-hero-1500.webp 1500w" sizes="(max-width: 760px) 100vw, 55vw" alt="Artwork for the REDON Games original project" loading="lazy" />
+            <span class="card-scrim" aria-hidden="true"></span>
+            <span class="card-content">
+              <span class="card-overline" data-en="Games · In Development" data-ko="게임 · 개발 중">Games · In Development</span>
+              <strong data-en="Original Worlds" data-ko="오리지널 세계">Original Worlds</strong>
+              <span class="card-link" data-en="Explore Games" data-ko="게임 살펴보기">Explore Games <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+          <a class="featured-card featured-card--sps" href="./sps/">
+            <span class="sps-card-top"><span class="card-overline" data-en="Independent Development Platform" data-ko="독립 개발 플랫폼">Independent Development Platform</span><span class="sps-logo-frame"><img src="./assets/sps-logo.webp" alt="SPS" loading="lazy" /></span></span>
+            <span class="card-content">
+              <strong>AI Development Workspace</strong>
+              <span class="card-description" data-en="A modular desktop workspace for projects, AI connections, and optional plugins." data-ko="프로젝트와 AI 연결, 선택형 플러그인을 한곳에 두는 모듈형 데스크톱 작업 공간입니다.">A modular desktop workspace for projects, AI connections, and optional plugins.</span>
+              <span class="card-link" data-en="Discover SPS" data-ko="SPS 알아보기">Discover SPS <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </div>
       </section>
 
-      <section id="sps" class="section technology-section" aria-labelledby="sps-title">
-        <div class="section-label">03 / <span data-en="Technology" data-ko="기술">Technology</span></div>
-        <div class="section-heading">
-          <h2 id="sps-title"><span data-en="Tools built for" data-ko="작업하는 공간을 위해">Tools built for</span> <em data-en="the room we work in." data-ko="만든 도구입니다.">the room we work in.</em></h2>
-          <p data-en="SPS is Redon's separate technology product for teams that want local-first AI development without losing control of their process." data-ko="SPS는 작업 방식을 잃지 않으면서 로컬 우선 AI 개발 환경을 원하는 팀을 위한 Redon의 별도 기술 제품입니다.">SPS is Redon's separate technology product for teams that want local-first AI development without losing control of their process.</p>
-        </div>
-        <article class="sps-panel">
-          <div class="sps-branding">
-            <p>SPS / SonParkServer</p>
-            <strong>SPS</strong>
-            <span data-en="Local-first AI development" data-ko="로컬 우선 AI 개발 환경">Local-first AI development</span>
-          </div>
-          <div class="sps-copy">
-            <p data-en="A serious workspace for teams that need AI close to the codebase: inspectable, local-first, and built around the way a small team actually ships." data-ko="코드베이스 가까이에서 AI를 사용해야 하는 팀을 위한 작업 공간입니다. 확인 가능하고, 로컬 우선이며, 작은 팀이 실제로 출시하는 방식을 중심에 둡니다.">A serious workspace for teams that need AI close to the codebase: inspectable, local-first, and built around the way a small team actually ships.</p>
-            <ul>
-              <li><strong data-en="Local context" data-ko="로컬 컨텍스트">Local context</strong><span data-en="Keep projects, decisions, and working context close to source." data-ko="프로젝트, 결정, 작업 맥락을 소스 가까이에 둡니다.">Keep projects, decisions, and working context close to source.</span></li>
-              <li><strong data-en="Legible systems" data-ko="이해 가능한 시스템">Legible systems</strong><span data-en="Use AI where it clarifies work, not where it obscures it." data-ko="작업을 흐리게 하지 않고 분명하게 만드는 곳에 AI를 사용합니다.">Use AI where it clarifies work, not where it obscures it.</span></li>
-              <li><strong data-en="Team pace" data-ko="팀의 속도">Team pace</strong><span data-en="Made for small, high-context teams moving together." data-ko="많은 맥락을 공유하며 함께 움직이는 작은 팀을 위해 만들었습니다.">Made for small, high-context teams moving together.</span></li>
-            </ul>
-            <a class="button button-blue" href="./download/" data-en="Download SPS Desktop" data-ko="SPS Desktop 다운로드">Download SPS Desktop</a>
-          </div>
-        </article>
-        <p class="technology-note" data-en="SPS is a product in its own right. It supports the studio's practice; it is not the studio's entire story." data-ko="SPS는 독립적인 제품입니다. 스튜디오의 작업 방식을 돕지만, 스튜디오 전체를 대신하지는 않습니다.">SPS is a product in its own right. It supports the studio's practice; it is not the studio's entire story.</p>
-      </section>
-
-      <section id="contact" class="contact-section" aria-labelledby="contact-title">
-        <div class="contact-layout">
-          <div>
-            <p class="eyebrow" data-en="A narrow door, intentionally" data-ko="의도적으로 좁게 여는 문">A narrow door, intentionally</p>
-            <h2 id="contact-title"><span data-en="Close feedback" data-ko="가까운 피드백이">Close feedback</span> <em data-en="makes better work." data-ko="더 나은 작업을 만듭니다.">makes better work.</em></h2>
-          </div>
-          <div class="contact-copy">
-            <p data-en="Interested in the studio, the first game, or SPS? We are keeping this beta small and reviewing requests through approved Google accounts." data-ko="스튜디오, 첫 번째 게임, SPS에 관심이 있나요? 이 베타는 소수로 운영하며 승인된 Google 계정으로 요청을 검토합니다.">Interested in the studio, the first game, or SPS? We are keeping this beta small and reviewing requests through approved Google accounts.</p>
-            <a class="email-link" href="mailto:redongames1234@gmail.com">redongames1234@gmail.com</a>
-            <a class="button button-light" href="./download/" data-en="Download SPS Desktop" data-ko="SPS Desktop 다운로드">Download SPS Desktop</a>
+      <section class="studio-intro" aria-labelledby="studio-title">
+        <div class="studio-intro-inner page-width">
+          <p class="eyebrow" data-en="REDON Games · Studio" data-ko="REDON Games · 스튜디오">REDON Games · Studio</p>
+          <div class="studio-intro-grid">
+            <h2 id="studio-title" data-en="Independent by Nature." data-ko="독립적인 방식으로 만듭니다.">Independent by Nature.</h2>
+            <div class="studio-intro-copy">
+              <p data-en="We create original experiences and build practical technology to support the creative process." data-ko="독창적인 경험을 만들고 창작 과정을 돕는 실용적인 기술을 직접 구축합니다.">We create original experiences and build practical technology to support the creative process.</p>
+              <a class="text-link" href="./studio/" data-en="About REDON Games" data-ko="REDON Games 소개">About REDON Games <span aria-hidden="true">↗</span></a>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <a class="brand" href="#top"><span class="brand-mark">R/</span><span>REDON GAMES</span></a>
-      <p data-en="Private feedback build · Not a public launch" data-ko="비공개 피드백 빌드 · 정식 공개 전">Private feedback build · Not a public launch</p>
-      <nav class="footer-links" aria-label="Policy links"><a href="./privacy/" data-en="Privacy" data-ko="개인정보">Privacy</a><a href="./terms/" data-en="Terms" data-ko="이용 조건">Terms</a><a href="./security/" data-en="Security" data-ko="보안">Security</a></nav>
-      <span>© 2026 Redon Games</span>
+      <div class="footer-main page-width">
+        <a class="brand" href="./" aria-label="REDON Games home"><span class="brand-monogram" aria-hidden="true">R</span><span>REDON GAMES</span></a>
+        <nav class="footer-nav" aria-label="Site links">
+          <a href="./games/" data-en="Games" data-ko="게임">Games</a><a href="./sps/" data-en="SPS" data-ko="SPS">SPS</a><a href="./studio/" data-en="Studio" data-ko="스튜디오">Studio</a><a href="./contact/" data-en="Contact" data-ko="문의">Contact</a>
+        </nav>
+        <a class="footer-github" href="https://github.com/Powerpunch777/SPS" target="_blank" rel="noopener" data-en="SPS on GitHub ↗" data-ko="GitHub의 SPS ↗">SPS on GitHub ↗</a>
+      </div>
+      <div class="footer-bottom page-width">
+        <span>© 2026 REDON Games</span>
+        <nav class="footer-legal" aria-label="Legal links"><a href="./privacy/" data-en="Privacy" data-ko="개인정보">Privacy</a><a href="./terms/" data-en="Terms" data-ko="이용 조건">Terms</a><a href="./security/" data-en="Security" data-ko="보안">Security</a></nav>
+        <span data-en="We Build Worlds. And the Tools Behind Them." data-ko="우리는 세계를 만들고, 그 세계를 만드는 도구도 개발합니다.">We Build Worlds. And the Tools Behind Them.</span>
+        <div class="footer-locale language-switch" role="group" aria-label="Language selection"><button type="button" class="language-button is-active" data-language="en" aria-pressed="true">EN</button><span aria-hidden="true">/</span><button type="button" class="language-button" data-language="ko" aria-pressed="false">KO</button></div>
+      </div>
     </footer>
-
     <script src="./scripts/site.js"></script>
   </body>
 </html>

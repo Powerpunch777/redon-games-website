@@ -1,42 +1,48 @@
-const footerPrefix = document.querySelector('link[href="./styles.css"]') ? "." : "..";
-
-document.querySelectorAll(".site-footer").forEach((footer) => {
-  if (footer.querySelector(".footer-links")) return;
-
-  const links = document.createElement("nav");
-  links.className = "footer-links";
-  links.setAttribute("aria-label", "Policy links");
-  [
-    ["Privacy", "개인정보", "privacy"],
-    ["Terms", "이용 조건", "terms"],
-    ["Security", "보안", "security"],
-  ].forEach(([english, korean, path]) => {
-    const link = document.createElement("a");
-    link.href = `${footerPrefix}/${path}/`;
-    link.dataset.en = english;
-    link.dataset.ko = korean;
-    link.textContent = english;
-    links.append(link);
-  });
-  footer.insertBefore(links, footer.lastElementChild);
-});
-
 const languageButtons = document.querySelectorAll(".language-button");
-const localizedElements = document.querySelectorAll("[data-en][data-ko]");
+const localizedElements = document.querySelectorAll("[data-en][data-ko]:not(meta)");
 const menuButton = document.querySelector(".menu-button");
 const mobileNavigation = document.querySelector(".mobile-navigation");
 
-function setLanguage(language) {
-  document.documentElement.lang = language;
+function closeMenu() {
+  if (!menuButton || !mobileNavigation) return;
+  menuButton.setAttribute("aria-expanded", "false");
+  mobileNavigation.hidden = true;
+  const language = document.documentElement.lang === "ko" ? "ko" : "en";
+  const suffix = language[0].toUpperCase() + language.slice(1);
+  menuButton.setAttribute("aria-label", menuButton.dataset[`menuOpen${suffix}`] ?? "Open navigation");
+}
+
+function setLanguage(language, { persist = true } = {}) {
+  const selectedLanguage = language === "ko" ? "ko" : "en";
+  document.documentElement.lang = selectedLanguage;
   localizedElements.forEach((element) => {
-    element.textContent = element.dataset[language];
+    element.textContent = element.dataset[selectedLanguage];
   });
   languageButtons.forEach((button) => {
-    const active = button.dataset.language === language;
+    const active = button.dataset.language === selectedLanguage;
     button.classList.toggle("is-active", active);
     button.setAttribute("aria-pressed", String(active));
   });
-  localStorage.setItem("redon-language", language);
+
+  const suffix = selectedLanguage[0].toUpperCase() + selectedLanguage.slice(1);
+  const title = document.documentElement.dataset[`pageTitle${suffix}`];
+  if (title) document.title = title;
+  const description = document.querySelector('meta[name="description"]');
+  if (description?.dataset[selectedLanguage]) description.content = description.dataset[selectedLanguage];
+
+  if (menuButton) {
+    const open = menuButton.getAttribute("aria-expanded") === "true";
+    const labelKey = open ? `menuClose${suffix}` : `menuOpen${suffix}`;
+    menuButton.setAttribute("aria-label", menuButton.dataset[labelKey] ?? "Open navigation");
+  }
+
+  if (persist) {
+    try {
+      localStorage.setItem("redon-language", selectedLanguage);
+    } catch {
+      // The selected language still works for this page when storage is unavailable.
+    }
+  }
 }
 
 languageButtons.forEach((button) => {
@@ -45,20 +51,40 @@ languageButtons.forEach((button) => {
 
 if (menuButton && mobileNavigation) {
   menuButton.addEventListener("click", () => {
-    const open = menuButton.getAttribute("aria-expanded") === "true";
-    menuButton.setAttribute("aria-expanded", String(!open));
-    mobileNavigation.hidden = open;
+    const open = menuButton.getAttribute("aria-expanded") !== "true";
+    menuButton.setAttribute("aria-expanded", String(open));
+    mobileNavigation.hidden = !open;
+    const language = document.documentElement.lang === "ko" ? "ko" : "en";
+    const suffix = language[0].toUpperCase() + language.slice(1);
+    const labelKey = open ? `menuClose${suffix}` : `menuOpen${suffix}`;
+    menuButton.setAttribute("aria-label", menuButton.dataset[labelKey] ?? "Open navigation");
   });
 
   mobileNavigation.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      menuButton.setAttribute("aria-expanded", "false");
-      mobileNavigation.hidden = true;
-    });
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
+      closeMenu();
+      menuButton.focus();
+    }
+  });
+
+  document.addEventListener("pointerdown", (event) => {
+    if (menuButton.getAttribute("aria-expanded") === "true" &&
+        !mobileNavigation.contains(event.target) &&
+        !menuButton.contains(event.target)) {
+      closeMenu();
+    }
   });
 }
 
-const preferredLanguage = localStorage.getItem("redon-language");
-if (preferredLanguage === "ko" || preferredLanguage === "en") {
-  setLanguage(preferredLanguage);
+let preferredLanguage = "en";
+try {
+  const storedLanguage = localStorage.getItem("redon-language");
+  if (storedLanguage === "ko" || storedLanguage === "en") preferredLanguage = storedLanguage;
+} catch {
+  // Use English when the browser blocks local storage.
 }
+setLanguage(preferredLanguage, { persist: false });
